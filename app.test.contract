@@ -1,0 +1,10 @@
+// Needs `bun tools/server.ts` running. Both streams carry the same 300 messages; only the bytes arrive whole.
+test "a byte stream delivers every message"
+  clock until state bytes.done == true within 10000
+  expect state bytes.delivered == 300
+  expect state bytes.last == 299
+
+test "an event stream delivers every message"
+  clock until state sse.done == true within 10000
+  expect state sse.last == 299
+  expect state sse.delivered == 300

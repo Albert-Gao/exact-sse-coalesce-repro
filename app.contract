@@ -1,0 +1,25 @@
+// Two streams of the same 300 numbered messages from tools/server.ts, sent 3 to a write, a write every 20 ms.
+// /sse is text/event-stream, /bytes is newline-delimited bytes. Each counts what its mapper saw.
+shape Count
+  delivered: number
+  coalesced: number
+  last: number
+  done: bool
+  end: string
+
+routes nav
+  home "/"
+
+component ExactSseCoalesceRepro
+  state sent = 300
+  state batch = 3
+  state gap = 20
+  resource sse = sseCount(sent, batch, gap) as shape Count
+  resource bytes = byteCount(sent, batch, gap) as shape Count
+  view
+    main testId="root" width="100%" height="100%"
+      scroll id="content" flex=1 min-height=0 padding=16
+        column gap=12
+          text `Server sent ${sent} ${sent == 1 ? "message" : "messages"}, ${batch} to a write, ${gap} ms between writes.` testId="sent"
+          text `text/event-stream: delivered ${sse.delivered}, coalesced ${sse.coalesced}, last ${sse.last}, done ${sse.done} (${sse.end})` testId="sse"
+          text `newline-delimited bytes: delivered ${bytes.delivered}, last ${bytes.last}, done ${bytes.done} (${bytes.end})` testId="bytes"

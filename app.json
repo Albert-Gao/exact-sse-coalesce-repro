@@ -1,0 +1,28 @@
+{
+  "$schema": "../exact/scripts/app.schema.json",
+  "name": "Exact Sse Coalesce Repro",
+  "short_name": "Exact Sse Coalesce Repro",
+  "id": "com.example.exact-sse-coalesce-repro-0fcc21",
+  "start_url": "/",
+  "display": "standalone",
+  "app": {
+    "id": "com.example.exact-sse-coalesce-repro-0fcc21",
+    "name": "Exact Sse Coalesce Repro"
+  },
+  "host": {
+    "web": {},
+    "ios": {
+      "minimumOS": "17.0",
+      "deviceFamily": [
+        "iphone",
+        "ipad"
+      ]
+    }
+  },
+  "deploy": {
+    "store": {
+      "web": "0",
+      "ios": "0"
+    }
+  }
+}
