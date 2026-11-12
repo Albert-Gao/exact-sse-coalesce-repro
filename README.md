@@ -23,7 +23,7 @@ test "an event stream delivers every message": FAIL
 
 ## Measured
 
-300 messages on the web host, one write every 20 ms (`state batch` in `app.contract` sets the messages per write):
+300 messages on the web host at Exact 981bd55d, one write every 20 ms (`state batch` in `app.contract` sets the messages per write):
 
 | Messages per write | SSE delivered | SSE coalesced | Bytes delivered |
 | --- | --- | --- | --- |
@@ -32,4 +32,4 @@ test "an event stream delivers every message": FAIL
 | 3 | 100 | 200 | 300 |
 | 10 | 30 | 270 | 300 |
 
-The loss tracks how many events share a read, not how fast they come.
+The loss tracks how many events share a read, not how fast they come. `test ios` on the iOS Simulator fails the same way: 100 of 300.
